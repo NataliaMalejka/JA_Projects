@@ -1,0 +1,3 @@
+C:\Users\Adam\Desktop\C++\JASol\JAWinForms\x64\Debug\JAWinForms.vcxproj.AssemblyReference.cache
+C:\Users\Adam\Desktop\C++\JASol\JAWinForms\x64\Debug\JAWinForms.Form1.resources
+C:\Users\Adam\Desktop\C++\JASol\JAWinForms\x64\Debug\JAWinForms.vcxproj.GenerateResource.cache

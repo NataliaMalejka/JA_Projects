@@ -1,0 +1,14 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: Katalog pośredni (x64\Debug\) zawiera pliki udostępnione z innego projektu (JAApp4.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
+MSVCRTD.lib(init.obj) : error LNK2019: nierozpoznany symbol zewnętrzny _CrtDbgReport przywołany w funkcji _CRT_RTC_INIT
+MSVCRTD.lib(init.obj) : error LNK2019: nierozpoznany symbol zewnętrzny _CrtDbgReportW przywołany w funkcji _CRT_RTC_INITW
+MSVCRTD.lib(error.obj) : error LNK2019: nierozpoznany symbol zewnętrzny strcpy_s przywołany w funkcji "void __cdecl _RTC_StackFailure(void *,char const *)" (?_RTC_StackFailure@@YAXPEAXPEBD@Z)
+MSVCRTD.lib(error.obj) : error LNK2019: nierozpoznany symbol zewnętrzny strcat_s przywołany w funkcji "void __cdecl _RTC_StackFailure(void *,char const *)" (?_RTC_StackFailure@@YAXPEAXPEBD@Z)
+MSVCRTD.lib(error.obj) : error LNK2019: nierozpoznany symbol zewnętrzny __stdio_common_vsprintf_s przywołany w funkcji _vsprintf_s_l
+MSVCRTD.lib(error.obj) : error LNK2001: nierozpoznany symbol zewnętrzny __C_specific_handler_noexcept
+MSVCRTD.lib(pdblkup.obj) : error LNK2019: nierozpoznany symbol zewnętrzny _wmakepath_s przywołany w funkcji "int __cdecl GetPdbDllPathFromFilePath(wchar_t const *,wchar_t *,unsigned __int64)" (?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z)
+MSVCRTD.lib(pdblkup.obj) : error LNK2019: nierozpoznany symbol zewnętrzny _wsplitpath_s przywołany w funkcji "int __cdecl GetPdbDllPathFromFilePath(wchar_t const *,wchar_t *,unsigned __int64)" (?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z)
+MSVCRTD.lib(pdblkup.obj) : error LNK2019: nierozpoznany symbol zewnętrzny wcscpy_s przywołany w funkcji "int __cdecl GetPdbDllPathFromFilePath(wchar_t const *,wchar_t *,unsigned __int64)" (?GetPdbDllPathFromFilePath@@YAHPEB_WPEA_W_K@Z)
+MSVCRTD.lib(pdblkup.obj) : error LNK2019: nierozpoznany symbol zewnętrzny __vcrt_GetModuleFileNameW przywołany w funkcji "struct HINSTANCE__ * __cdecl GetPdbDll(void)" (?GetPdbDll@@YAPEAUHINSTANCE__@@XZ)
+MSVCRTD.lib(pdblkup.obj) : error LNK2019: nierozpoznany symbol zewnętrzny __vcrt_GetModuleHandleW przywołany w funkcji "struct HINSTANCE__ * __cdecl GetPdbDll(void)" (?GetPdbDll@@YAPEAUHINSTANCE__@@XZ)
+MSVCRTD.lib(pdblkup.obj) : error LNK2019: nierozpoznany symbol zewnętrzny __vcrt_LoadLibraryExW przywołany w funkcji "struct HINSTANCE__ * __cdecl GetPdbDll(void)" (?GetPdbDll@@YAPEAUHINSTANCE__@@XZ)
+C:\Users\Adam\Desktop\C++\JASol\x64\Debug\JAProject.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 12

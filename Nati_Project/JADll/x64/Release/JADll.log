@@ -1,0 +1,4 @@
+﻿  Assembling mojadll.asm...
+     Trwa tworzenie biblioteki C:\Users\Adam\Desktop\C++\JASol\x64\Release\JADll.lib i obiektu C:\Users\Adam\Desktop\C++\JASol\x64\Release\JADll.exp
+  LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
+  JADll.vcxproj -> C:\Users\Adam\Desktop\C++\JASol\x64\Release\JADll.dll
