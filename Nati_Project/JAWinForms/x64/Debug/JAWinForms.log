@@ -1,8 +1,4 @@
-﻿  pch.cpp
-  AssemblyInfo.cpp
-  CppCLR_WinFormsProject.cpp
-  Form1.cpp
-  Generowanie kodu...
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
-  AssemblyInfo.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
-  JAWinForms.vcxproj -> C:\Users\Adam\Desktop\C++\JASol\x64\Debug\JAWinForms.exe
+﻿  AssemblyInfo.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
+CppCLR_WinFormsProject.obj : error LNK2028: nierozpoznany token (0A00052B) "extern "C" int __cdecl CheckSSEAsm(void)" (?CheckSSEAsm@@$$J0YAHXZ) przywoływany w funkcji "private: void __clrcall CppCLRWinFormsProject::Form1::button1_Click(class System::Object ^,class System::EventArgs ^)" (?button1_Click@Form1@CppCLRWinFormsProject@@$$FAE$AAMXPE$AAVObject@System@@PE$AAVEventArgs@4@@Z)
+CppCLR_WinFormsProject.obj : error LNK2019: nierozpoznany symbol zewnętrzny "extern "C" int __cdecl CheckSSEAsm(void)" (?CheckSSEAsm@@$$J0YAHXZ) przywołany w funkcji "private: void __clrcall CppCLRWinFormsProject::Form1::button1_Click(class System::Object ^,class System::EventArgs ^)" (?button1_Click@Form1@CppCLRWinFormsProject@@$$FAE$AAMXPE$AAVObject@System@@PE$AAVEventArgs@4@@Z)
+H:\Studia\JA_Projects\Nati_Project\x64\Debug\JAWinForms.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 2

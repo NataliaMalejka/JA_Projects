@@ -1,3 +1,8 @@
-﻿  CppCLR_WinFormsProject.cpp
+﻿  pch.cpp
+  AssemblyInfo.cpp
+  CppCLR_WinFormsProject.cpp
+  Form1.cpp
+  Generowanie kodu...
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
   AssemblyInfo.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
-  JAWinForms.vcxproj -> C:\Users\Adam\Desktop\C++\JASol\x64\Release\JAWinForms.exe
+  JAWinForms.vcxproj -> H:\Studia\JA_Projects\Nati_Project\x64\Release\JAWinForms.exe

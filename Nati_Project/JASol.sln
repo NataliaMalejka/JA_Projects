@@ -4,11 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JADll", "JADll\JADll.vcxproj", "{52B657FD-4E47-43BC-B3C9-83C45F63B54C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30} = {1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JAWinForms", "JAWinForms\JAWinForms.vcxproj", "{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}"
-	ProjectSection(ProjectDependencies) = postProject
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C} = {52B657FD-4E47-43BC-B3C9-83C45F63B54C}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
