@@ -3,12 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JADll", "JADll\JADll.vcxproj", "{52B657FD-4E47-43BC-B3C9-83C45F63B54C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JAWinForms", "JAWinForms\JAWinForms.vcxproj", "{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}"
 	ProjectSection(ProjectDependencies) = postProject
-		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30} = {1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C} = {869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E} = {A4B07115-071C-4F59-BBC4-713AD3AE4A5E}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JAWinForms", "JAWinForms\JAWinForms.vcxproj", "{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsmLibrary", "AsmLibrary\AsmLibrary.vcxproj", "{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CLibrary", "CLibrary\CLibrary.vcxproj", "{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,14 +21,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Debug|x64.ActiveCfg = Debug|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Debug|x64.Build.0 = Debug|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Debug|x86.ActiveCfg = Debug|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Debug|x86.Build.0 = Debug|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Release|x64.ActiveCfg = Release|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Release|x64.Build.0 = Release|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Release|x86.ActiveCfg = Release|x64
-		{52B657FD-4E47-43BC-B3C9-83C45F63B54C}.Release|x86.Build.0 = Release|x64
 		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}.Debug|x64.ActiveCfg = Debug|x64
 		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}.Debug|x64.Build.0 = Debug|x64
 		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}.Debug|x86.ActiveCfg = Debug|Win32
@@ -34,6 +29,22 @@ Global
 		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}.Release|x64.Build.0 = Release|x64
 		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}.Release|x86.ActiveCfg = Release|Win32
 		{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}.Release|x86.Build.0 = Release|Win32
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Debug|x64.ActiveCfg = Debug|x64
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Debug|x64.Build.0 = Debug|x64
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Debug|x86.ActiveCfg = Debug|Win32
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Debug|x86.Build.0 = Debug|Win32
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Release|x64.ActiveCfg = Release|x64
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Release|x64.Build.0 = Release|x64
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Release|x86.ActiveCfg = Release|Win32
+		{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}.Release|x86.Build.0 = Release|Win32
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Debug|x64.ActiveCfg = Debug|x64
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Debug|x64.Build.0 = Debug|x64
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Debug|x86.ActiveCfg = Debug|Win32
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Debug|x86.Build.0 = Debug|Win32
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Release|x64.ActiveCfg = Release|x64
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Release|x64.Build.0 = Release|x64
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Release|x86.ActiveCfg = Release|Win32
+		{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,9 @@
 C:\Users\Adam\Desktop\C++\JASol\JAWinForms\x64\Debug\JAWinForms.vcxproj.AssemblyReference.cache
 C:\Users\Adam\Desktop\C++\JASol\JAWinForms\x64\Debug\JAWinForms.Form1.resources
 C:\Users\Adam\Desktop\C++\JASol\JAWinForms\x64\Debug\JAWinForms.vcxproj.GenerateResource.cache
+C:\Users\orkar\Desktop\JA_filtrownieObrazu\JAWinForms\x64\Debug\JAWinForms.vcxproj.AssemblyReference.cache
+C:\Users\orkar\Desktop\JA_filtrownieObrazu\JAWinForms\x64\Debug\JAWinForms.Form1.resources
+C:\Users\orkar\Desktop\JA_filtrownieObrazu\JAWinForms\x64\Debug\JAWinForms.vcxproj.GenerateResource.cache
+H:\Studia\JA_filtrownieObrazu\JAWinForms\x64\Debug\JAWinForms.vcxproj.AssemblyReference.cache
+H:\Studia\JA_filtrownieObrazu\JAWinForms\x64\Debug\JAWinForms.Form1.resources
+H:\Studia\JA_filtrownieObrazu\JAWinForms\x64\Debug\JAWinForms.vcxproj.GenerateResource.cache

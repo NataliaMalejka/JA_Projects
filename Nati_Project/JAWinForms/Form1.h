@@ -8,6 +8,9 @@
 #include <cstdint>
 #include <cstdint>
 
+#include <thread>
+
+
 namespace CppCLRWinFormsProject {
 
 	using namespace System;
@@ -51,7 +54,10 @@ namespace CppCLRWinFormsProject {
 		uint8_t red;
 	};
 
-	extern "C" uint32_t CheckSSE2Asm(uint8_t a, uint8_t b, uint8_t c);
+	extern "C" {
+		#include "CLibrary.h"
+		#include "AsmLibrary.h"
+	}
 	/// <summary>
 	/// Summary for Form1
 	/// </summary>
@@ -105,9 +111,10 @@ namespace CppCLRWinFormsProject {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(133, 57);
+			this->button1->Location = System::Drawing::Point(177, 70);
+			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(100, 28);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Zastosuj";
 			this->button1->UseVisualStyleBackColor = true;
@@ -115,35 +122,40 @@ namespace CppCLRWinFormsProject {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(133, 106);
+			this->pictureBox1->Location = System::Drawing::Point(177, 130);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(516, 339);
+			this->pictureBox1->Size = System::Drawing::Size(688, 417);
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(133, 12);
+			this->textBox1->Location = System::Drawing::Point(177, 15);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(516, 20);
+			this->textBox1->Size = System::Drawing::Size(687, 22);
 			this->textBox1->TabIndex = 2;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(296, 57);
+			this->textBox2->Location = System::Drawing::Point(395, 70);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(353, 20);
+			this->textBox2->Size = System::Drawing::Size(469, 22);
 			this->textBox2->TabIndex = 3;
 			// 
 			// Form1
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(812, 519);
+			this->ClientSize = System::Drawing::Size(1083, 639);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button1);
+			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -199,59 +211,117 @@ namespace CppCLRWinFormsProject {
 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		constexpr int NUM_CHANNELS = 3;
+
 		using namespace System::Runtime::InteropServices;
+		using namespace System::Drawing;
 		System::String^ managedString = textBox1->Text;
-		const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(managedString)).ToPointer();
-		std::string file_path = chars;
-		Marshal::FreeHGlobal(IntPtr((void*)chars));
 
-		BMPHeader bmp_header;
-		DIBHeader dib_header;
-		std::vector<Pixel> pixels;
 
-		if (loadBMP(file_path, bmp_header, dib_header, pixels))
+		// create Image object from file
+		Bitmap^ image = gcnew Bitmap(managedString);
+
+		// get image width and height
+		const int width = image->Width;
+		const int height = image->Height;
+
+		textBox2->Text = "wymiary obrazka: " + width.ToString() + " x " + height.ToString();
+
+
+		unsigned char* image_data = new unsigned char[width * height * NUM_CHANNELS];
+
+		// copy image data to image_data array
+		for (int y = 0; y < height; ++y)
 		{
-			textBox2->Text = "szerokosc w pikselach: " + dib_header.width.ToString();
-
-			for (size_t i = 0; i < pixels.size(); ++i)
+			for (int x = 0; x < width; ++x)
 			{
-				Pixel& pixel = pixels[i];
-
-				uint8_t blue = pixel.blue;
-				uint8_t green = pixel.green;
-				uint8_t red = pixel.red;
-
-				uint32_t BGR = CheckSSE2Asm(blue, green, red);
-
-				int width = 50;
-				int height = 50;
-
-				uint8_t new_blue = (BGR) >> 16 & 0xFF;
-				uint8_t new_green = (BGR) >> 8 & 0xFF;
-				uint8_t new_red = (BGR) & 0xFF;
-
-				System::Drawing::Bitmap^ bitmap = gcnew System::Drawing::Bitmap(width, height);
-
-				for (int y = 0; y < height; ++y)
-				{
-					for (int x = 0; x < width; ++x)
-					{
-
-						System::Drawing::Color color = System::Drawing::Color::FromArgb(new_blue, new_green, new_red);
-						bitmap->SetPixel(x, y, color);
-					}
-				}
-
-				pictureBox1->Image = bitmap;
-
-				if (i >= 0) break;
+				Color color = image->GetPixel(x, y);
+				image_data[(y * width + x) * NUM_CHANNELS + 0] = color.R;
+				image_data[(y * width + x) * NUM_CHANNELS + 1] = color.G;
+				image_data[(y * width + x) * NUM_CHANNELS + 2] = color.B;
 			}
 		}
-		else
+
+		unsigned char* new_image_data = new unsigned char[width * height * NUM_CHANNELS];
+
+
+		// apply filter
+		// filterC(width, height, image_data, new_image_data, 1);
+		filterAsm(width, height, image_data, new_image_data, 4);
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
+		Bitmap^ new_image = gcnew Bitmap(width, height);
+
+		for (int y = 0; y < height; ++y)
 		{
-			textBox2->Text = "nie wczytano obrazu";
+			for (int x = 0; x < width; ++x)
+			{
+				Color color = Color::FromArgb(
+					new_image_data[(y * width + x) * NUM_CHANNELS + 0],
+					new_image_data[(y * width + x) * NUM_CHANNELS + 1],
+					new_image_data[(y * width + x) * NUM_CHANNELS + 2]);
+				new_image->SetPixel(x, y, color);
+			}
 		}
+
+
+		pictureBox1->SizeMode = PictureBoxSizeMode::Zoom;
+		pictureBox1->Image = new_image;
+
+		// const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(managedString)).ToPointer();
+		// std::string file_path = chars;
+		// Marshal::FreeHGlobal(IntPtr((void*)chars));
+
+		// BMPHeader bmp_header;
+		// DIBHeader dib_header;
+		// std::vector<Pixel> pixels;
+
+		// if (loadBMP(file_path, bmp_header, dib_header, pixels))
+		// {
+		// 	textBox2->Text = "szerokosc w pikselach: " + dib_header.width.ToString();
+
+		// 	for (size_t i = 0; i < pixels.size(); ++i)
+		// 	{
+		// 		Pixel& pixel = pixels[i];
+
+		// 		uint8_t blue = pixel.blue;
+		// 		uint8_t green = pixel.green;
+		// 		uint8_t red = pixel.red;
+
+		// 		uint32_t BGR = CheckSSE2Asm(blue, green, red);
+
+		// 		int width = 50;
+		// 		int height = 50;
+
+		// 		uint8_t new_blue = (BGR) >> 16 & 0xFF;
+		// 		uint8_t new_green = (BGR) >> 8 & 0xFF;
+		// 		uint8_t new_red = (BGR) & 0xFF;
+
+		// 		System::Drawing::Bitmap^ bitmap = gcnew System::Drawing::Bitmap(width, height);
+
+		// 		for (int y = 0; y < height; ++y)
+		// 		{
+		// 			for (int x = 0; x < width; ++x)
+		// 			{
+
+		// 				System::Drawing::Color color = System::Drawing::Color::FromArgb(new_blue, new_green, new_red);
+		// 				bitmap->SetPixel(x, y, color);
+		// 			}
+		// 		}
+
+		// 		pictureBox1->Image = bitmap;
+
+		// 		if (i >= 0) break;
+		// 	}
+		// }
+		// else
+		// {
+		// 	textBox2->Text = "nie wczytano obrazu";
+		// }
 	}
 
-	};
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
