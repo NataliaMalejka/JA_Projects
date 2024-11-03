@@ -83,7 +83,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)CLibrary;$(SolutionDir)CLibrary2;$(SolutionDir)AsmLibrary;$(SolutionDir)AsmLibrary2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;CLibrary.lib;AsmLibrary.lib;CLibrary2.lib;AsmLibrary2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;AsmLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
       <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug</AdditionalLibraryDirectories>

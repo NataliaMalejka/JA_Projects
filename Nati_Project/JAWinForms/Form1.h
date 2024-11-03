@@ -9,6 +9,17 @@
 #include <cstdint>
 
 #include <thread>
+#include <chrono>
+#include <future>
+
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <Windows.h>
+
+// void f(int)
+//void (*mojwskaznik)(int)
+
+typedef void(__fastcall* FilterCFunc)(int, int, unsigned char*, unsigned char*, int);
 
 
 namespace CppCLRWinFormsProject {
@@ -55,8 +66,8 @@ namespace CppCLRWinFormsProject {
 	};
 
 	extern "C" {
-		#include "CLibrary.h"
-		#include "AsmLibrary.h"
+		// #include "CLibrary.h"
+#include "AsmLibrary.h"
 	}
 	/// <summary>
 	/// Summary for Form1
@@ -247,9 +258,71 @@ namespace CppCLRWinFormsProject {
 
 		// apply filter
 		// filterC(width, height, image_data, new_image_data, 1);
-		filterAsm(width, height, image_data, new_image_data, 4);
+		// filterAsm(width, height, image_data, new_image_data, 4);
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		bool bibliotekaC = true;
+
+		if (bibliotekaC)
+		{
+			HINSTANCE hDLL = LoadLibrary(L"CLibrary.dll");
+			if (!hDLL)
+			{
+				textBox2->Text = "Nie uda³o sie wczytaæ CLibrary.dll";
+				return;
+			}
+
+			FilterCFunc filterC = (FilterCFunc)GetProcAddress(hDLL, "filterC");
+			if (!filterC)
+			{
+				textBox2->Text = "Nie uda³o sie wczytaæ funkcji filterC";
+				return;
+			}
+
+			String^ str;
+			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
+			{
+				auto start = std::chrono::high_resolution_clock::now();
+				filterC(width, height, image_data, new_image_data, numThreads);
+				auto end = std::chrono::high_resolution_clock::now();
+
+				auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+				str += numThreads.ToString() + ": " + duration.count().ToString() + "ms  ";
+			}
+			textBox2->Text = str;
+
+			FreeLibrary(hDLL);
+		}
+		else // biblioteka ASM
+		{
+			String^ str;
+			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
+			{
+				auto start = std::chrono::high_resolution_clock::now();
+
+				const int STRIP_HEIGHT = height / numThreads;
+				std::vector<std::thread> threads;
+
+				for (int i = 0; i < 1; i++)
+				{
+					const int START_ROW = STRIP_HEIGHT * i;
+					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, STRIP_HEIGHT, START_ROW));
+					//filterAsm(width, height, image_data, new_image_data, STRIP_HEIGHT, START_ROW);
+				}
+
+				for (std::thread& t : threads)
+				{
+					t.join();
+				}
+
+				auto end = std::chrono::high_resolution_clock::now();
+				auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+				str += numThreads.ToString() + ": " + duration.count().ToString() + "ms  ";
+			}
+			textBox2->Text = str;
+		}
+
+
 
 		Bitmap^ new_image = gcnew Bitmap(width, height);
 
@@ -268,60 +341,9 @@ namespace CppCLRWinFormsProject {
 
 		pictureBox1->SizeMode = PictureBoxSizeMode::Zoom;
 		pictureBox1->Image = new_image;
-
-		// const char* chars = (const char*)(Marshal::StringToHGlobalAnsi(managedString)).ToPointer();
-		// std::string file_path = chars;
-		// Marshal::FreeHGlobal(IntPtr((void*)chars));
-
-		// BMPHeader bmp_header;
-		// DIBHeader dib_header;
-		// std::vector<Pixel> pixels;
-
-		// if (loadBMP(file_path, bmp_header, dib_header, pixels))
-		// {
-		// 	textBox2->Text = "szerokosc w pikselach: " + dib_header.width.ToString();
-
-		// 	for (size_t i = 0; i < pixels.size(); ++i)
-		// 	{
-		// 		Pixel& pixel = pixels[i];
-
-		// 		uint8_t blue = pixel.blue;
-		// 		uint8_t green = pixel.green;
-		// 		uint8_t red = pixel.red;
-
-		// 		uint32_t BGR = CheckSSE2Asm(blue, green, red);
-
-		// 		int width = 50;
-		// 		int height = 50;
-
-		// 		uint8_t new_blue = (BGR) >> 16 & 0xFF;
-		// 		uint8_t new_green = (BGR) >> 8 & 0xFF;
-		// 		uint8_t new_red = (BGR) & 0xFF;
-
-		// 		System::Drawing::Bitmap^ bitmap = gcnew System::Drawing::Bitmap(width, height);
-
-		// 		for (int y = 0; y < height; ++y)
-		// 		{
-		// 			for (int x = 0; x < width; ++x)
-		// 			{
-
-		// 				System::Drawing::Color color = System::Drawing::Color::FromArgb(new_blue, new_green, new_red);
-		// 				bitmap->SetPixel(x, y, color);
-		// 			}
-		// 		}
-
-		// 		pictureBox1->Image = bitmap;
-
-		// 		if (i >= 0) break;
-		// 	}
-		// }
-		// else
-		// {
-		// 	textBox2->Text = "nie wczytano obrazu";
-		// }
 	}
 
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-};
+	};
 }
