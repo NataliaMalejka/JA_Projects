@@ -81,6 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)CLibrary;$(SolutionDir)CLibrary2;$(SolutionDir)AsmLibrary;$(SolutionDir)AsmLibrary2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;AsmLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>

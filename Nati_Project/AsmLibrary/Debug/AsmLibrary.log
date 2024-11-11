@@ -1,0 +1,53 @@
+﻿  Assembling AsmLibrary.asm...
+AsmLibrary.asm(5): error A2013: .MODEL must precede this directive
+AsmLibrary.asm(6): error A2034: must be in segment block
+AsmLibrary.asm(7): error A2034: must be in segment block
+AsmLibrary.asm(8): error A2034: must be in segment block
+AsmLibrary.asm(9): error A2034: must be in segment block
+AsmLibrary.asm(10): error A2034: must be in segment block
+AsmLibrary.asm(11): error A2034: must be in segment block
+AsmLibrary.asm(12): error A2034: must be in segment block
+AsmLibrary.asm(14): error A2034: must be in segment block
+AsmLibrary.asm(15): error A2034: must be in segment block
+AsmLibrary.asm(16): error A2034: must be in segment block
+AsmLibrary.asm(18): error A2034: must be in segment block
+AsmLibrary.asm(19): error A2013: .MODEL must precede this directive
+AsmLibrary.asm(21): error A2034: must be in segment block : filterAsm
+AsmLibrary.asm(30): error A2034: must be in segment block
+AsmLibrary.asm(31): error A2034: must be in segment block
+AsmLibrary.asm(33): error A2034: must be in segment block
+AsmLibrary.asm(34): error A2034: must be in segment block
+AsmLibrary.asm(35): error A2034: must be in segment block
+AsmLibrary.asm(36): error A2034: must be in segment block
+AsmLibrary.asm(37): error A2034: must be in segment block
+AsmLibrary.asm(38): error A2034: must be in segment block
+AsmLibrary.asm(39): error A2034: must be in segment block
+AsmLibrary.asm(40): error A2034: must be in segment block
+AsmLibrary.asm(42): error A2034: must be in segment block
+AsmLibrary.asm(43): error A2034: must be in segment block
+AsmLibrary.asm(45): error A2034: must be in segment block
+AsmLibrary.asm(46): error A2034: must be in segment block
+AsmLibrary.asm(48): error A2034: must be in segment block
+AsmLibrary.asm(51): error A2034: must be in segment block
+AsmLibrary.asm(53): error A2034: must be in segment block
+AsmLibrary.asm(54): error A2034: must be in segment block
+AsmLibrary.asm(55): error A2034: must be in segment block
+AsmLibrary.asm(57): error A2034: must be in segment block
+AsmLibrary.asm(58): error A2034: must be in segment block
+AsmLibrary.asm(60): error A2034: must be in segment block
+AsmLibrary.asm(62): error A2034: must be in segment block
+AsmLibrary.asm(63): error A2034: must be in segment block
+AsmLibrary.asm(64): error A2034: must be in segment block
+AsmLibrary.asm(67): error A2034: must be in segment block
+AsmLibrary.asm(68): error A2034: must be in segment block
+AsmLibrary.asm(69): error A2034: must be in segment block
+AsmLibrary.asm(71): error A2034: must be in segment block
+AsmLibrary.asm(72): error A2034: must be in segment block
+AsmLibrary.asm(73): error A2034: must be in segment block
+AsmLibrary.asm(75): error A2034: must be in segment block
+AsmLibrary.asm(76): error A2034: must be in segment block
+AsmLibrary.asm(78): error A2034: must be in segment block
+AsmLibrary.asm(79): error A2034: must be in segment block
+AsmLibrary.asm(80): error A2034: must be in segment block
+AsmLibrary.asm(82): fatal error A1010: unmatched block nesting : filterAsm
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: Polecenie ml.exe /c /nologo /Zi /Fo"Debug\AsmLibrary.obj" /W3 /errorReport:prompt  /TaAsmLibrary.asm zostało zakończone; kod błędu: 1.

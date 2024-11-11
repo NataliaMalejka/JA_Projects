@@ -1,0 +1,11 @@
+﻿  pch.cpp
+  AssemblyInfo.cpp
+  CppCLR_WinFormsProject.cpp
+H:\Studia\JA_Projects\Nati_Project\JAWinForms\Form1.h(22,26): warning C4561: Wywołanie „__fastcall” jest niezgodne z opcją „/clr”: konwertowanie na wywołanie „__stdcall”
+  (kompilowanie pliku źródłowego „/CppCLR_WinFormsProject.cpp”)
+  
+H:\Studia\JA_Projects\Nati_Project\JAWinForms\Form1.h(70,10): error C1083: Nie można otworzyć pliku dołącz: 'AsmLibrary.h': No such file or directory
+  (kompilowanie pliku źródłowego „/CppCLR_WinFormsProject.cpp”)
+  
+  Form1.cpp
+  Generowanie kodu...

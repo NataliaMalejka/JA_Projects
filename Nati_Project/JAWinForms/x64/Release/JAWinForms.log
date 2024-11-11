@@ -1,3 +1,14 @@
-﻿  CppCLR_WinFormsProject.cpp
-  AssemblyInfo.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  JAWinForms.vcxproj -> C:\Users\orkar\Desktop\JA_filtrownieObrazu\x64\Release\JAWinForms.exe
+﻿  pch.cpp
+  AssemblyInfo.cpp
+  CppCLR_WinFormsProject.cpp
+H:\Studia\JA_Projects\Nati_Project\JAWinForms\Form1.h(293,22): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u00E6" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+  (kompilowanie pliku źródłowego „/CppCLR_WinFormsProject.cpp”)
+  
+H:\Studia\JA_Projects\Nati_Project\JAWinForms\Form1.h(300,22): warning C4566: znak przedstawiony przez nazwę zawierającą znaki uniwersalne "\u00E6" nie może być przedstawiony w bieżącej stronie kodowej (1250)
+  (kompilowanie pliku źródłowego „/CppCLR_WinFormsProject.cpp”)
+  
+  Form1.cpp
+  Generowanie kodu...
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  AssemblyInfo.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
+  JAWinForms.vcxproj -> H:\Studia\JA_Projects\Nati_Project\x64\Release\JAWinForms.exe

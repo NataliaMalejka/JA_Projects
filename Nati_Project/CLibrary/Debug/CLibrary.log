@@ -1,0 +1,4 @@
+﻿  CLibrary.c
+     Trwa tworzenie biblioteki H:\Studia\JA_Projects\Nati_Project\Debug\CLibrary.lib i obiektu H:\Studia\JA_Projects\Nati_Project\Debug\CLibrary.exp
+MSVCRTD.lib(exe_main.obj) : error LNK2019: nierozpoznany symbol zewnętrzny _main przywołany w funkcji "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+H:\Studia\JA_Projects\Nati_Project\Debug\CLibrary.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 1

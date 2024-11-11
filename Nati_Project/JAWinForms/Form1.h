@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include <iostream>
 #include <vector>
@@ -99,6 +99,8 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::RadioButton^ radioButton1;
+	private: System::Windows::Forms::RadioButton^ radioButton2;
 
 	private:
 		/// <summary>
@@ -117,15 +119,16 @@ namespace CppCLRWinFormsProject {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(177, 70);
-			this->button1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->button1->Location = System::Drawing::Point(133, 57);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(100, 28);
+			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Zastosuj";
 			this->button1->UseVisualStyleBackColor = true;
@@ -133,40 +136,60 @@ namespace CppCLRWinFormsProject {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(177, 130);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox1->Location = System::Drawing::Point(133, 136);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(688, 417);
+			this->pictureBox1->Size = System::Drawing::Size(516, 339);
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(177, 15);
-			this->textBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox1->Location = System::Drawing::Point(133, 12);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(687, 22);
+			this->textBox1->Size = System::Drawing::Size(516, 20);
 			this->textBox1->TabIndex = 2;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(395, 70);
-			this->textBox2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->textBox2->Location = System::Drawing::Point(296, 57);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(469, 22);
+			this->textBox2->Size = System::Drawing::Size(353, 20);
 			this->textBox2->TabIndex = 3;
+			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Checked = true;
+			this->radioButton1->Location = System::Drawing::Point(133, 99);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(32, 17);
+			this->radioButton1->TabIndex = 4;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"C";
+			this->radioButton1->UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(234, 99);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(45, 17);
+			this->radioButton2->TabIndex = 5;
+			this->radioButton2->Text = L"Asm";
+			this->radioButton2->UseVisualStyleBackColor = true;
 			// 
 			// Form1
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1083, 639);
+			this->ClientSize = System::Drawing::Size(812, 519);
+			this->Controls->Add(this->radioButton2);
+			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -262,19 +285,19 @@ namespace CppCLRWinFormsProject {
 
 		bool bibliotekaC = true;
 
-		if (bibliotekaC)
+		if (radioButton1->Checked)
 		{
 			HINSTANCE hDLL = LoadLibrary(L"CLibrary.dll");
 			if (!hDLL)
 			{
-				textBox2->Text = "Nie uda≥o sie wczytaÊ CLibrary.dll";
+				textBox2->Text = "Nie udalo sie wczyta√¶ CLibrary.dll";
 				return;
 			}
 
 			FilterCFunc filterC = (FilterCFunc)GetProcAddress(hDLL, "filterC");
 			if (!filterC)
 			{
-				textBox2->Text = "Nie uda≥o sie wczytaÊ funkcji filterC";
+				textBox2->Text = "Nie udalo sie wczyta√¶ funkcji filterC";
 				return;
 			}
 

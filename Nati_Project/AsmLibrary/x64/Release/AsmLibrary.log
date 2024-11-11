@@ -1,2 +1,3 @@
 ﻿  Assembling AsmLibrary.asm...
-  AsmLibrary.vcxproj -> C:\Users\orkar\Desktop\JA_filtrownieObrazu\x64\Release\AsmLibrary.lib
+AsmLibrary.asm(51): error A2070: invalid instruction operands
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: Polecenie ml64.exe /c /nologo /Zi /Fo"x64\Release\AsmLibrary.obj" /W3 /errorReport:prompt  /TaAsmLibrary.asm zostało zakończone; kod błędu: 1.
