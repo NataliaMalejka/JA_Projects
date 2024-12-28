@@ -19,7 +19,7 @@
 // void f(int)
 //void (*mojwskaznik)(int)
 
-typedef void(__fastcall* FilterCFunc)(int, int, unsigned char*, unsigned char*, int);
+typedef double(__fastcall* FilterCFunc)(int, int, unsigned char*, unsigned char*, int);
 
 
 namespace CppCLRWinFormsProject {
@@ -32,38 +32,6 @@ namespace CppCLRWinFormsProject {
 	using namespace System::Drawing;
 	using namespace std;
 
-#pragma pack(push, 1)
-	struct BMPHeader
-	{
-		uint16_t file_type;
-		uint32_t file_size;
-		uint16_t reserved1;
-		uint16_t reserved2;
-		uint32_t offset_data;
-	};
-
-	struct DIBHeader
-	{
-		uint32_t dib_header_size;
-		int32_t width;
-		int32_t height;
-		uint16_t planes;
-		uint16_t bit_count;
-		uint32_t compression;
-		uint32_t image_size;
-		int32_t x_pixels_per_meter;
-		int32_t y_pixels_per_meter;
-		uint32_t colors_used;
-		uint32_t colors_important;
-	};
-#pragma pack(pop)
-
-	struct Pixel
-	{
-		uint8_t blue;
-		uint8_t green;
-		uint8_t red;
-	};
 
 	extern "C" {
 		// #include "CLibrary.h"
@@ -136,9 +104,9 @@ namespace CppCLRWinFormsProject {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->Location = System::Drawing::Point(133, 136);
+			this->pictureBox1->Location = System::Drawing::Point(133, 122);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(516, 339);
+			this->pictureBox1->Size = System::Drawing::Size(598, 385);
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
@@ -147,15 +115,16 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->textBox1->Location = System::Drawing::Point(133, 12);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(516, 20);
+			this->textBox1->Size = System::Drawing::Size(598, 20);
 			this->textBox1->TabIndex = 2;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(296, 57);
+			this->textBox2->Location = System::Drawing::Point(214, 60);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(353, 20);
+			this->textBox2->Size = System::Drawing::Size(517, 20);
 			this->textBox2->TabIndex = 3;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
 			// 
 			// radioButton1
 			// 
@@ -198,48 +167,7 @@ namespace CppCLRWinFormsProject {
 
 		}
 
-		bool loadBMP(const std::string& file_path, BMPHeader& bmp_header, DIBHeader& dib_header, std::vector<Pixel>& pixels)
-		{
-			std::ifstream file(file_path, std::ios::binary);
-			if (!file)
-			{
-				return false;
-			}
-
-			file.read(reinterpret_cast<char*>(&bmp_header), sizeof(BMPHeader));
-			if (bmp_header.file_type != 0x4D42)
-			{
-				return false;
-			}
-
-			file.read(reinterpret_cast<char*>(&dib_header), sizeof(DIBHeader));
-			if (dib_header.bit_count != 24)
-			{
-				return false;
-			}
-
-			file.seekg(bmp_header.offset_data, std::ios::beg);
-
-			int row_stride = (dib_header.width * 3 + 3) & ~3;
-			pixels.resize(dib_header.width * dib_header.height);
-
-			for (int y = 0; y < dib_header.height; ++y)
-			{
-				for (int x = 0; x < dib_header.width; ++x)
-				{
-					Pixel pixel;
-					file.read(reinterpret_cast<char*>(&pixel), sizeof(Pixel));
-					int index = (dib_header.height - 1 - y) * dib_header.width + x;
-					pixels[index] = pixel;
-				}
-
-				file.ignore(row_stride - dib_header.width * 3);
-			}
-
-			file.close();
-			return true;
-		}
-
+		
 
 #pragma endregion
 
@@ -290,27 +218,27 @@ namespace CppCLRWinFormsProject {
 			HINSTANCE hDLL = LoadLibrary(L"CLibrary.dll");
 			if (!hDLL)
 			{
-				textBox2->Text = "Nie udalo sie wczytaæ CLibrary.dll";
+				textBox2->Text = "Nie udalo sie wczytac CLibrary.dll";
 				return;
 			}
 
 			FilterCFunc filterC = (FilterCFunc)GetProcAddress(hDLL, "filterC");
 			if (!filterC)
 			{
-				textBox2->Text = "Nie udalo sie wczytaæ funkcji filterC";
+				textBox2->Text = "Nie udalo sie wczytac funkcji filterC";
 				return;
 			}
 
 			String^ str;
 			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				auto start = std::chrono::high_resolution_clock::now();
-				filterC(width, height, image_data, new_image_data, numThreads);
-				auto end = std::chrono::high_resolution_clock::now();
+				//auto start = std::chrono::high_resolution_clock::now();
+				double duration = filterC(width, height, image_data, new_image_data, numThreads);
+				//auto end = std::chrono::high_resolution_clock::now();
 
-				auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-				str += numThreads.ToString() + ": " + duration.count().ToString() + "ms  ";
+				//auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+				duration = std::round(duration * 10.0) / 10.0;
+				str += numThreads.ToString() + ": " + duration + "ms  ";
 			}
 			textBox2->Text = str;
 
@@ -345,8 +273,6 @@ namespace CppCLRWinFormsProject {
 			textBox2->Text = str;
 		}
 
-
-
 		Bitmap^ new_image = gcnew Bitmap(width, height);
 
 		for (int y = 0; y < height; ++y)
@@ -368,5 +294,7 @@ namespace CppCLRWinFormsProject {
 
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	};
+	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

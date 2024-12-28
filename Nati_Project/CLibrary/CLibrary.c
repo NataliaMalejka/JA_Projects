@@ -51,7 +51,7 @@ DWORD WINAPI threadFunc(LPVOID data)
 	return 0;
 }
 
-void __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from, unsigned char* to, int nT)
+double __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from, unsigned char* to, int nT)
 {
 	HANDLE* threads = (HANDLE*)malloc(nT * sizeof(HANDLE));
 	ThreadData* threadData = (ThreadData*)malloc(nT * sizeof(ThreadData));
@@ -60,7 +60,7 @@ void __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from, 
 	{
 		free(threads);
 		free(threadData);
-		return;
+		return -1.0;
 	}
 
 	const int stripSize = h / nT;
@@ -82,14 +82,24 @@ void __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from, 
 
 			free(threadData);
 			free(threads);
-			return;
+			return -1.0;
 		}
 	}
+	LARGE_INTEGER startTime, endTime, frequency;
+	QueryPerformanceFrequency(&frequency);          
+	QueryPerformanceCounter(&startTime);            
+
 	WaitForMultipleObjects(nT, threads, TRUE, INFINITE);
+
+	QueryPerformanceCounter(&endTime);              
+
+	double elapsedTime = (double)(endTime.QuadPart - startTime.QuadPart) * 1000.0 / (double)frequency.QuadPart;
 
 	for (int i = 0; i < nT; i++)
 		CloseHandle(threads[i]);
 	
 	free(threadData);
 	free(threads);
+
+	return elapsedTime;
 }
