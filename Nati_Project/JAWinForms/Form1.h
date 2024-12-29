@@ -249,18 +249,17 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				auto start = std::chrono::high_resolution_clock::now();
-
 				const int STRIP_HEIGHT = height / numThreads;
 				std::vector<std::thread> threads;
 
-				for (int i = 0; i < 1; i++)
+				for (int i = 0; i < numThreads; i++)
 				{
 					const int START_ROW = STRIP_HEIGHT * i;
 					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, STRIP_HEIGHT, START_ROW));
 					//filterAsm(width, height, image_data, new_image_data, STRIP_HEIGHT, START_ROW);
 				}
 
+				auto start = std::chrono::high_resolution_clock::now();
 				for (std::thread& t : threads)
 				{
 					t.join();

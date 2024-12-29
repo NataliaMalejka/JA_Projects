@@ -1,3 +1,4 @@
 ﻿  Assembling AsmLibrary.asm...
-AsmLibrary.asm(51): error A2070: invalid instruction operands
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: Polecenie ml64.exe /c /nologo /Zi /Fo"x64\Release\AsmLibrary.obj" /W3 /errorReport:prompt  /TaAsmLibrary.asm zostało zakończone; kod błędu: 1.
+     Trwa tworzenie biblioteki H:\Studia\JA_Projects\Nati_Project\x64\Release\AsmLibrary.lib i obiektu H:\Studia\JA_Projects\Nati_Project\x64\Release\AsmLibrary.exp
+  LINK : określono opcję /LTCG, lecz generowanie kodu nie było wymagane; usuń opcję /LTCG z wiersza polecenia konsolidatora w celu podwyższenia wydajności konsolidatora
+  AsmLibrary.vcxproj -> H:\Studia\JA_Projects\Nati_Project\x64\Release\AsmLibrary.dll

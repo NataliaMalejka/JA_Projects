@@ -1,5 +1,3 @@
-EXTERN CreateThread:PROC
-
 PUBLIC filterAsm
 
 
@@ -43,11 +41,12 @@ filterAsm PROC
 	mov rdi, _BUF_TO
 
 	mov ebx, _STRIP_HEIGHT	; rbx - number of rows to process
-
+	add ebx, _START_ROW
 yLoopStart:
 	dec ebx
 
-	add ebx, _START_ROW
+	cmp ebx, _START_ROW         
+    jl endYLoop   
 
 	mov ecx, _WIDTH
 	xLoopStart:
@@ -80,7 +79,7 @@ yLoopStart:
 	cmp ebx, 0
 	jne yLoopStart
 
-
+endYLoop:
 	pop r15
 	pop rdi
 	pop rsi
