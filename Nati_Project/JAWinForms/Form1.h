@@ -232,6 +232,7 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
+				//int numThreads = 16;
 				//auto start = std::chrono::high_resolution_clock::now();
 				double duration = filterC(width, height, image_data, new_image_data, numThreads);
 				//auto end = std::chrono::high_resolution_clock::now();
@@ -247,8 +248,10 @@ namespace CppCLRWinFormsProject {
 		else // biblioteka ASM
 		{
 			String^ str;
-			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
+			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
+				int numThreads = 10;
+
 				const int STRIP_HEIGHT = height / numThreads;
 				std::vector<std::thread> threads;
 

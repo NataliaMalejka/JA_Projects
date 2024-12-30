@@ -49,6 +49,7 @@ yLoopStart:
     jl endYLoop   
 
 	mov ecx, _WIDTH
+
 	xLoopStart:
 		dec ecx
 
@@ -64,9 +65,35 @@ yLoopStart:
 			add rax, r9
 
 			mov r15, rax		; r15 = index
-			mov al, [rsi+r15]
-			shr al, 1
-			mov [rdi+r15], al
+
+
+			cmp r9d, 2						; Sprawdü kana≥ (R = 0, G = 1, B = 2)
+			je setBlue
+			cmp r9d, 1
+			je setGreen
+			cmp r9d, 0
+			je setRed
+
+			;mov al, [rsi+r15]
+			;shr al, 1
+			;mov [rdi+r15], al
+
+			setBlue:
+				mov al, [rsi+r15]
+				mov al, 50
+				mov [rdi+r15], al
+				jmp cLoopStart
+
+			setGreen:
+				mov al, [rsi+r15]
+				mov al, 250
+				mov [rdi+r15], al
+				jmp cLoopStart
+
+			setRed:
+				mov al, [rsi+r15]
+				mov al, 50
+				mov [rdi+r15], al
 
 			cmp r9d, 0
 			jne cLoopStart
@@ -74,7 +101,7 @@ yLoopStart:
 		cmp ecx, 0
 		jne xLoopStart
 
-	sub ebx, _START_ROW
+	;sub ebx, _START_ROW
 	
 	cmp ebx, 0
 	jne yLoopStart
