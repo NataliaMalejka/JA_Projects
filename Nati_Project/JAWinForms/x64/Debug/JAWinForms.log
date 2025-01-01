@@ -1,6 +1,2 @@
-﻿  CppCLR_WinFormsProject.cpp
-H:\Studia\JA_Projects\Nati_Project\JAWinForms\CppCLR_WinFormsProject.cpp(1,10): warning C4651: /D__CLR_VER=40809277 określony dla prekompilowanego nagłówka, ale nie dla bieżącej kompilacji
-  (kompilowanie pliku źródłowego „/CppCLR_WinFormsProject.cpp”)
-  
-  AssemblyInfo.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
+﻿  AssemblyInfo.obj : napotkano moduł MSIL; konsolidowanie przyrostowe jest wyłączone dla modułów MSIL; zostanie wykonana pełna konsolidacja
   JAWinForms.vcxproj -> H:\Studia\JA_Projects\Nati_Project\x64\Debug\JAWinForms.exe

@@ -67,7 +67,7 @@ yLoopStart:
 			mov r15, rax		; r15 = index
 
 
-			cmp r9d, 2						; Sprawdü kana≥ (R = 0, G = 1, B = 2)
+			cmp r9d, 2						; Sprawdz kanal (R = 0, G = 1, B = 2)
 			je setBlue
 			cmp r9d, 1
 			je setGreen

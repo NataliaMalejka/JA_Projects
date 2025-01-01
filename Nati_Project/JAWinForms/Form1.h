@@ -232,7 +232,7 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				//int numThreads = 16;
+				//int numThreads = 64;
 				//auto start = std::chrono::high_resolution_clock::now();
 				double duration = filterC(width, height, image_data, new_image_data, numThreads);
 				//auto end = std::chrono::high_resolution_clock::now();
@@ -250,16 +250,22 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				int numThreads = 10;
+				int numThreads = 1;
 
-				const int STRIP_HEIGHT = height / numThreads;
+				int STRIP_HEIGHT = height / numThreads;
+				int modulo = height % numThreads;
+				int counter = 0;
+
 				std::vector<std::thread> threads;
 
+				int currentRow = 0;
 				for (int i = 0; i < numThreads; i++)
 				{
-					const int START_ROW = STRIP_HEIGHT * i;
-					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, STRIP_HEIGHT, START_ROW));
-					//filterAsm(width, height, image_data, new_image_data, STRIP_HEIGHT, START_ROW);
+					int currentHeight = height / numThreads + (modulo > 0 ? 1 : 0);
+					if (modulo > 0) modulo--;
+
+					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, currentHeight , currentRow));
+					currentRow += currentHeight;
 				}
 
 				auto start = std::chrono::high_resolution_clock::now();

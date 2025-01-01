@@ -70,17 +70,25 @@ double __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from
 	{
 		stripSize = h / nT;
 		modulo = h % nT;
+		int counter = 0;
 
 		for (int i = 0; i < nT; i++)
 		{
+
 			threadData[i].w = w;
 			threadData[i].h = h;
 			threadData[i].from = from;
 			threadData[i].to = to;
 			threadData[i].stripSize = stripSize;
-			if ((i == (nT - 1)) && modulo != 0)
-				threadData[i].stripSize = stripSize + modulo;
-			threadData[i].startRow = i * stripSize;
+			threadData[i].startRow = i * stripSize + counter;
+			if (modulo != 0)
+			{
+				threadData[i].stripSize = stripSize + 1;
+				threadData[i].startRow = i * (stripSize + 1);
+				modulo--;
+				counter++;
+			}
+			
 
 			threads[i] = CreateThread(NULL, 0, threadFunc, &threadData[i], 0, NULL);
 
