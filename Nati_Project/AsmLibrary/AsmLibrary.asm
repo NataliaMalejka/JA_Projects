@@ -18,6 +18,7 @@ filterAsm PROC
 	; rdx - height
 	; r8 - input image
 	; r9 - output image
+	; r10 - currentHeight
 	; [rsp+30h] - strip height
 	; [rsp+38h] - start row
 
@@ -40,63 +41,80 @@ filterAsm PROC
 	mov rsi, _BUF_FROM
 	mov rdi, _BUF_TO
 
+	mov r10d, _START_ROW
 	mov ebx, _STRIP_HEIGHT	; rbx - number of rows to process
-	add ebx, _START_ROW
+	add ebx, r10d
+
 yLoopStart:
 	dec ebx
 
-	cmp ebx, _START_ROW         
+	cmp ebx, r10d         
     jl endYLoop   
 
 	mov ecx, _WIDTH
 
 	xLoopStart:
 		dec ecx
+		mov rax, -1   
 
-		mov r9d, NUM_CHANNELS
-		cLoopStart:
-			dec r9d
+		dyLoopStart:
+			mov r11, -1
 
-			; (y * w + x) * NUM_CHANNELS + channel
-			mov rax, rbx		; rax = y
-			imul _WIDTH
-			add rax, rcx
-			imul NUM_CHANNELS
-			add rax, r9
+			dxLoopStart:
+				mov r9d, NUM_CHANNELS
 
-			mov r15, rax		; r15 = index
+				cLoopStart:
+					dec r9d
 
+					; Obliczanie indeksu dla kana³u koloru
+					; (y * w + x) * NUM_CHANNELS + channel
+					mov r12d, ebx
+					imul r12d, _WIDTH
+					add r12d, ecx
+					imul r12d, NUM_CHANNELS
+					add r12d, r9d  
+					mov r15d, r12d		 ; r15d = index
 
-			cmp r9d, 2						; Sprawdz kanal (R = 0, G = 1, B = 2)
-			je setBlue
-			cmp r9d, 1
-			je setGreen
-			cmp r9d, 0
-			je setRed
+					cmp r9d, 2           ; Sprawdz kanal (R = 0, G = 1, B = 2)
+					je setBlue
+					cmp r9d, 1
+					je setGreen
+					cmp r9d, 0
+					je setRed
 
-			;mov al, [rsi+r15]
-			;shr al, 1
-			;mov [rdi+r15], al
+					setBlue:
+						push rax
+						mov al, [rsi+r15]
+						mov al, 50
+						mov [rdi+r15], al
+						pop rax
+						jmp cLoopStart
 
-			setBlue:
-				mov al, [rsi+r15]
-				mov al, 50
-				mov [rdi+r15], al
-				jmp cLoopStart
+					setGreen:
+						push rax
+						mov al, [rsi+r15]
+						mov al, 250
+						mov [rdi+r15], al
+						pop rax
+						jmp cLoopStart
 
-			setGreen:
-				mov al, [rsi+r15]
-				mov al, 250
-				mov [rdi+r15], al
-				jmp cLoopStart
+					setRed:
+						push rax
+						mov al, [rsi+r15]
+						mov al, 50
+						mov [rdi+r15], al
+						pop rax
 
-			setRed:
-				mov al, [rsi+r15]
-				mov al, 50
-				mov [rdi+r15], al
+					cmp r9d, 0
+					jne cLoopStart
 
-			cmp r9d, 0
-			jne cLoopStart
+				inc r11
+				cmp r11, 1
+				jle dxLoopStart
+
+			inc rax              ; Zwieksz dy
+			cmp rax, 1
+			jle dyLoopStart
 
 		cmp ecx, 0
 		jne xLoopStart
@@ -116,15 +134,5 @@ endYLoop:
 	ret
 	
 filterAsm ENDP
-
-
-
-
-processPixel PROC
-	ret
-processPixel ENDP
-
-
-
 
 END
