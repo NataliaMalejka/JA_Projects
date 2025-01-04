@@ -230,9 +230,9 @@ namespace CppCLRWinFormsProject {
 			}
 
 			String^ str;
-			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
+			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				//int numThreads = 64;
+				int numThreads = 1;
 				//auto start = std::chrono::high_resolution_clock::now();
 				double duration = filterC(width, height, image_data, new_image_data, numThreads);
 				//auto end = std::chrono::high_resolution_clock::now();

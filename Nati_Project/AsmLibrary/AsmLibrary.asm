@@ -40,8 +40,8 @@ filterAsm PROC
 
 	mov rsi, _BUF_FROM
 	mov rdi, _BUF_TO
-
 	mov r10d, _START_ROW
+
 	mov ebx, _STRIP_HEIGHT	; rbx - number of rows to process
 	add ebx, r10d
 
@@ -54,72 +54,95 @@ yLoopStart:
 	mov ecx, _WIDTH
 
 	xLoopStart:
-		dec ecx
-		mov rax, -1   
-
-		dyLoopStart:
-			mov r11, -1
-
-			dxLoopStart:
-				mov r9d, NUM_CHANNELS
+		push r10
+		dec ecx   
+		mov r9d, NUM_CHANNELS
 
 				cLoopStart:
 					dec r9d
 
+					xor r14d, r14d            ; r14d = sum = 0
+					xor r15d, r15d            ; r15d = count = 0
+
+					mov rax, -1
+
+					dyLoopStart:
+						mov r11, -1
+
+						dxLoopStart:
+							; Obliczanie rx = x + dx
+							mov r12d, ecx           ; r12d = x
+							add r12d, r11d          ; r12d = x + dx (rx)
+
+							; Sprawdzenie warunku rx < 0 || rx >= _WIDTH
+							cmp r12d, 0             ; rx < 0?
+							jl skipPixel            ; Skocz jeœli rx < 0
+							cmp r12d, _WIDTH        ; rx >= _WIDTH?
+							jge skipPixel           ; Skocz jeœli rx >= _WIDTH
+
+							; Obliczanie ry = y + dy
+							mov r13d, ebx           ; r13d = y
+							add r13d, eax           ; r13d = y + dy (ry)
+
+							; Sprawdzenie warunku ry < 0 || ry >= _HEIGHT
+							cmp r13d, 0             ; ry < 0?
+							jl skipPixel            ; Skocz jeœli ry < 0
+							cmp r13d, _HEIGHT       ; ry >= _HEIGHT?
+							jge skipPixel           ; Skocz jeœli ry >= _HEIGHT
+
+
+							; Zwiêkszenie count
+							inc r15d           ; count++
+
+							; Obliczenie indeksu fromIndex = (ry * w + rx) * NUM_CHANNELS + channel							
+							mov r10d, r13d     ; r10d = ry
+							imul r10d, _WIDTH  ; r10d = ry * w
+							add r10d, r12d     ; r10d = ry * w + rx
+							imul r10d, NUM_CHANNELS ; r10d = (ry * w + rx) * NUM_CHANNELS
+							add r10d, r9d      ; r10d = (ry * w + rx) * NUM_CHANNELS + channel
+
+							; Dodanie wartoœci do sum
+							movzx r8d, byte ptr [rsi + r10] ; r8d = from[fromIndex]
+							add r14d, r8d     ; sum += from[fromIndex]
+
+						skipPixel:
+							inc r11
+							cmp r11, 1
+							jle dxLoopStart
+
+						inc rax              ; Zwieksz dy
+						cmp rax, 1
+						jle dyLoopStart
+
+
 					; Obliczanie indeksu dla kana³u koloru
 					; (y * w + x) * NUM_CHANNELS + channel
-					mov r12d, ebx
-					imul r12d, _WIDTH
-					add r12d, ecx
-					imul r12d, NUM_CHANNELS
-					add r12d, r9d  
-					mov r15d, r12d		 ; r15d = index
+					mov r10d, ebx
+					imul r10d, _WIDTH
+					add r10d, ecx
+					imul r10d, NUM_CHANNELS
+					add r10d, r9d  
 
-					cmp r9d, 2           ; Sprawdz kanal (R = 0, G = 1, B = 2)
-					je setBlue
-					cmp r9d, 1
-					je setGreen
-					cmp r9d, 0
-					je setRed
+					 ; Obliczenie sum / count i zapis do bufora wyjœciowego
+					xor edx, edx            ; Wyzerowanie edx (dla idiv)
+					cmp r15d, 0
+					             ; Sprawdzenie czy count > 0
+					je skipDivision         ; Skocz, jeœli count == 0 (unikaj dzielenia przez 0)
+					push rax
+					mov eax, r14d           ; eax = sum
+					idiv r15d               ; eax = sum / count
+					mov r14d, eax
+					pop rax
 
-					setBlue:
-						push rax
-						mov al, [rsi+r15]
-						mov al, 50
-						mov [rdi+r15], al
-						pop rax
-						jmp cLoopStart
+				skipDivision:
+					mov byte ptr [rdi + r10], r14b ; Zapisanie wyniku do bufora to			
+					
+				cmp r9d, 0
+				jne cLoopStart
 
-					setGreen:
-						push rax
-						mov al, [rsi+r15]
-						mov al, 250
-						mov [rdi+r15], al
-						pop rax
-						jmp cLoopStart
-
-					setRed:
-						push rax
-						mov al, [rsi+r15]
-						mov al, 50
-						mov [rdi+r15], al
-						pop rax
-
-					cmp r9d, 0
-					jne cLoopStart
-
-				inc r11
-				cmp r11, 1
-				jle dxLoopStart
-
-			inc rax              ; Zwieksz dy
-			cmp rax, 1
-			jle dyLoopStart
-
+		pop r10
 		cmp ecx, 0
 		jne xLoopStart
-
-	;sub ebx, _START_ROW
 	
 	cmp ebx, 0
 	jne yLoopStart
