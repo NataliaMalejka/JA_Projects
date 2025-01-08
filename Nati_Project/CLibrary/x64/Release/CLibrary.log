@@ -1,2 +1,3 @@
 ﻿  CLibrary.c
+H:\Studia\JA_Projects\Nati_Project\CLibrary\CLibrary.c(65,3): warning C4098: "Create": funkcja "void" zwraca wartość
   CLibrary.vcxproj -> H:\Studia\JA_Projects\Nati_Project\x64\Release\CLibrary.lib

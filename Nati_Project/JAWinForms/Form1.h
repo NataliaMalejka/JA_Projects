@@ -106,7 +106,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(133, 122);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(598, 385);
+			this->pictureBox1->Size = System::Drawing::Size(853, 484);
 			this->pictureBox1->TabIndex = 1;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
@@ -115,14 +115,14 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->textBox1->Location = System::Drawing::Point(133, 12);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(598, 20);
+			this->textBox1->Size = System::Drawing::Size(853, 20);
 			this->textBox1->TabIndex = 2;
 			// 
 			// textBox2
 			// 
 			this->textBox2->Location = System::Drawing::Point(214, 60);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(517, 20);
+			this->textBox2->Size = System::Drawing::Size(772, 20);
 			this->textBox2->TabIndex = 3;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
 			// 
@@ -152,7 +152,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(812, 519);
+			this->ClientSize = System::Drawing::Size(1064, 618);
 			this->Controls->Add(this->radioButton2);
 			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->textBox2);
@@ -179,20 +179,15 @@ namespace CppCLRWinFormsProject {
 		using namespace System::Drawing;
 		System::String^ managedString = textBox1->Text;
 
-
-		// create Image object from file
 		Bitmap^ image = gcnew Bitmap(managedString);
 
-		// get image width and height
 		const int width = image->Width;
 		const int height = image->Height;
 
 		textBox2->Text = "wymiary obrazka: " + width.ToString() + " x " + height.ToString();
 
-
 		unsigned char* image_data = new unsigned char[width * height * NUM_CHANNELS];
 
-		// copy image data to image_data array
 		for (int y = 0; y < height; ++y)
 		{
 			for (int x = 0; x < width; ++x)
@@ -205,11 +200,6 @@ namespace CppCLRWinFormsProject {
 		}
 
 		unsigned char* new_image_data = new unsigned char[width * height * NUM_CHANNELS];
-
-
-		// apply filter
-		// filterC(width, height, image_data, new_image_data, 1);
-		// filterAsm(width, height, image_data, new_image_data, 4);
 
 		bool bibliotekaC = true;
 
@@ -230,14 +220,11 @@ namespace CppCLRWinFormsProject {
 			}
 
 			String^ str;
-			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
+			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				int numThreads = 1;
-				//auto start = std::chrono::high_resolution_clock::now();
+				//int numThreads = 16;
 				double duration = filterC(width, height, image_data, new_image_data, numThreads);
-				//auto end = std::chrono::high_resolution_clock::now();
 
-				//auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 				duration = std::round(duration * 10.0) / 10.0;
 				str += numThreads.ToString() + ": " + duration + "ms  ";
 			}
@@ -250,7 +237,7 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				int numThreads = 1;
+				int numThreads = 8;
 
 				int STRIP_HEIGHT = height / numThreads;
 				int modulo = height % numThreads;
@@ -294,7 +281,6 @@ namespace CppCLRWinFormsProject {
 				new_image->SetPixel(x, y, color);
 			}
 		}
-
 
 		pictureBox1->SizeMode = PictureBoxSizeMode::Zoom;
 		pictureBox1->Image = new_image;

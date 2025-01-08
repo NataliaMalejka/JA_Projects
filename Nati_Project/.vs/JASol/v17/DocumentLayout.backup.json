@@ -7,31 +7,28 @@
       "RelativeMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|solutionrelative:JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|solutionrelative:CLibrary\\CLibrary.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.41.34120\\INCLUDE\\EXCEPTION||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\ASMLIBRARY\\ASMLIBRARY.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:ASMLIBRARY\\ASMLIBRARY.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|solutionrelative:JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|solutionrelative:CLibrary\\CLibrary.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|solutionrelative:JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,27 +38,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 232,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "exception",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\exception",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\exception",
-              "ViewState": "AgIAABEBAAAAAAAAAAAAACQBAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-04T16:15:40.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Form1.h [Projekt]",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h",
               "RelativeDocumentMoniker": "JAWinForms\\Form1.h",
-              "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h [Projekt]*",
-              "RelativeToolTip": "JAWinForms\\Form1.h [Projekt]*",
+              "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h [Projekt]",
+              "RelativeToolTip": "JAWinForms\\Form1.h [Projekt]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-11T16:17:46.511Z",
               "EditorCaption": " [Projekt]"
@@ -72,42 +58,42 @@
               "Title": "Form1.h",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h",
               "RelativeDocumentMoniker": "JAWinForms\\Form1.h",
-              "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h*",
-              "RelativeToolTip": "JAWinForms\\Form1.h*",
-              "ViewState": "AgIAAOwAAAAAAAAAAAAiwPwAAAAXAAAAAAAAAA==",
+              "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h",
+              "RelativeToolTip": "JAWinForms\\Form1.h",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAgwNcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-27T16:15:09.203Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "CLibrary.c",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c",
               "RelativeDocumentMoniker": "CLibrary\\CLibrary.c",
               "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c",
               "RelativeToolTip": "CLibrary\\CLibrary.c",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAB4AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-11-02T20:49:29.185Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AsmLibrary.asm",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm",
               "RelativeDocumentMoniker": "AsmLibrary\\AsmLibrary.asm",
               "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm",
               "RelativeToolTip": "AsmLibrary\\AsmLibrary.asm",
-              "ViewState": "AgIAAFMAAAAAAAAAAAArwIkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-10-27T14:53:59.93Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "CLibrary.h",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.h",
               "RelativeDocumentMoniker": "CLibrary\\CLibrary.h",
@@ -115,7 +101,8 @@
               "RelativeToolTip": "CLibrary\\CLibrary.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-03T19:16:14.007Z"
+              "WhenOpened": "2024-11-03T19:16:14.007Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -132,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "AsmLibrary.def",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.def",
               "RelativeDocumentMoniker": "AsmLibrary\\AsmLibrary.def",
@@ -140,7 +127,8 @@
               "RelativeToolTip": "AsmLibrary\\AsmLibrary.def",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001913|",
-              "WhenOpened": "2024-10-27T14:54:10.009Z"
+              "WhenOpened": "2024-10-27T14:54:10.009Z",
+              "EditorCaption": ""
             }
           ]
         }

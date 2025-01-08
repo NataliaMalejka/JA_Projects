@@ -51,6 +51,32 @@ DWORD WINAPI threadFunc(LPVOID data)
 	return 0;
 }
 
+void Create(HANDLE* threads, int i, ThreadData* threadData)
+{
+	threads[i] = CreateThread(NULL, 0, threadFunc, &threadData[i], 0, NULL);
+
+	if (threads[i] == NULL)
+	{
+		for (int j = 0; j < i; j++)
+			CloseHandle(threads[j]);
+
+		free(threadData);
+		free(threads);
+		return -1.0;
+	}
+}
+
+void DataToThreads(ThreadData* threadData, int w, int h, unsigned char* from, unsigned char* to, int i)
+{
+	threadData[i].w = w;
+	threadData[i].h = h;
+	threadData[i].from = from;
+	threadData[i].to = to;
+	threadData[i].stripSize = 0;
+	threadData[i].startRow = 0;
+}
+
+
 double __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from, unsigned char* to, int nT)
 {
 	HANDLE* threads = (HANDLE*)malloc(nT * sizeof(HANDLE));
@@ -63,24 +89,17 @@ double __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from
 		return -1.0;
 	}
 
-	int stripSize;
-	int modulo;
+	int stripSize = h/nT;
+	int modulo = h % nT;
 
 	if (h / nT > 0)
 	{
-		stripSize = h / nT;
-		modulo = h % nT;
 		int counter = 0;
 
 		for (int i = 0; i < nT; i++)
 		{
+			DataToThreads(threadData, w, h, from, to, i);
 
-			threadData[i].w = w;
-			threadData[i].h = h;
-			threadData[i].from = from;
-			threadData[i].to = to;
-			threadData[i].stripSize = stripSize;
-			threadData[i].startRow = i * stripSize + counter;
 			if (modulo != 0)
 			{
 				threadData[i].stripSize = stripSize + 1;
@@ -88,53 +107,28 @@ double __declspec(dllexport) __stdcall filterC(int w, int h, unsigned char* from
 				modulo--;
 				counter++;
 			}
-			
-
-			threads[i] = CreateThread(NULL, 0, threadFunc, &threadData[i], 0, NULL);
-
-			if (threads[i] == NULL)
+			else
 			{
-				for (int j = 0; j < i; j++)
-					CloseHandle(threads[j]);
-
-				free(threadData);
-				free(threads);
-				return -1.0;
+				threadData[i].stripSize = stripSize;
+				threadData[i].startRow = i * stripSize + counter;
 			}
+
+			Create(threads, i, threadData);
 		}
 	}
 	else
 	{
 		for (int i = 0; i < nT; i++)
 		{
-			threadData[i].w = w;
-			threadData[i].h = h;
-			threadData[i].from = from;
-			threadData[i].to = to;
-			threadData[i].stripSize = 0;
-			threadData[i].startRow = 0;
+			DataToThreads(threadData, w, h, from, to, i);
 
 			if (i < h)
 			{
-				threadData[i].w = w;
-				threadData[i].h = h;
-				threadData[i].from = from;
-				threadData[i].to = to;
 				threadData[i].stripSize = 1;
 				threadData[i].startRow = i;
 			}
 
-			threads[i] = CreateThread(NULL, 0, threadFunc, &threadData[i], 0, NULL);
-
-			if (threads[i] == NULL)
-			{
-				for (int j = 0; j < i; j++)
-					CloseHandle(threads[j]);
-
-				free(threadData);
-				free(threads);
-				return -1.0;
-			}
+			Create(threads, i, threadData);
 		}
 	}
 
