@@ -184,8 +184,6 @@ namespace CppCLRWinFormsProject {
 		const int width = image->Width;
 		const int height = image->Height;
 
-		textBox2->Text = "wymiary obrazka: " + width.ToString() + " x " + height.ToString();
-
 		unsigned char* image_data = new unsigned char[width * height * NUM_CHANNELS];
 
 		for (int y = 0; y < height; ++y)
@@ -237,25 +235,28 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				int numThreads = 8;
+				int numThreads = 16;
 
-				int STRIP_HEIGHT = height / numThreads;
-				int modulo = height % numThreads;
+				int STRIP_HEIGHT = (height -2) / numThreads;
+				int modulo = (height -2) % numThreads;
 				int counter = 0;
 
 				std::vector<std::thread> threads;
 
-				int currentRow = 0;
+				int currentRow = 1;
+				
 				for (int i = 0; i < numThreads; i++)
 				{
-					int currentHeight = height / numThreads + (modulo > 0 ? 1 : 0);
+					int currentHeight = (height -2) / numThreads + (modulo > 0 ? 1 : 0);
 					if (modulo > 0) modulo--;
 
-					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, currentHeight , currentRow));
+					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, currentHeight, currentRow));
 					currentRow += currentHeight;
 				}
+				
 
 				auto start = std::chrono::high_resolution_clock::now();
+
 				for (std::thread& t : threads)
 				{
 					t.join();

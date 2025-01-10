@@ -3,7 +3,6 @@ PUBLIC filterAsm
 
 .data
 NUM_CHANNELS DWORD 3
-ONE DWORD 1
 _WIDTH  DWORD 0
 _HEIGHT DWORD 0
 _BUF_FROM QWORD 0
@@ -14,7 +13,6 @@ _START_ROW    DWORD 0
 .code
 
 filterAsm PROC
-    ; Setup stack frame
     push rbp
     mov rbp, rsp
 
@@ -30,26 +28,25 @@ filterAsm PROC
 
     mov rsi, _BUF_FROM
     mov rdi, _BUF_TO
-    mov r10d, _START_ROW
+    mov r13d, _START_ROW
 
     mov ebx, _STRIP_HEIGHT
-    add ebx, r10d
+    add ebx, r13d
+
+    mov r15, 9
 
 yLoopStart:
     dec ebx
-    cmp ebx, r10d
+    cmp ebx, r13d
     jl endYLoop
 
     mov ecx, _WIDTH
+    dec ecx
 
         xLoopStart:
-            push r10
             dec ecx
-            mov r9d, NUM_CHANNELS
 
-            ; SIMD summation for NUM_CHANNELS
-            vxorpd xmm1, xmm1, xmm1       ; Zero sum (sum = 0)
-            xor r15d, r15d                ; count = 0
+            vpxor xmm1, xmm1, xmm1       ; sum = 0
 
             mov rax, -1                   ; dy = -1
 
@@ -57,34 +54,14 @@ yLoopStart:
                 mov r11, -1                   ; dx = -1
 
                 dxLoopStart:
-                    ; Calculate rx = x + dx
-                    mov r12d, ecx
-                    add r12d, r11d
 
-                    ; Check bounds rx
-                    cmp r12d, 0
-                    jl skipPixel
-                    cmp r12d, _WIDTH
-                    jge skipPixel
-
-                    ; Calculate ry = y + dy
-                    mov r13d, ebx
-                    add r13d, eax
-
-                    ; Check bounds ry
-                    cmp r13d, 0
-                    jl skipPixel
-                    cmp r13d, _HEIGHT
-                    jge skipPixel
-
-                    inc r15;
-
-                    ; Load NUM_CHANNELS pixels into YMM register
-                    mov r10d, r13d
-                    imul r10d, _WIDTH
-                    add r10d, r12d
-                    imul r10d, NUM_CHANNELS
-
+                    mov r10d, ebx            ; y
+                    add r10, rax             ; y + dy
+                    imul r10d, _WIDTH        ; y * WIDTH
+                    mov r12d, ecx            ; x
+                    add r12d, r11d           ; x + dx
+                    add r10d, r12d           ; (y * WIDTH) + x
+                    imul r10d, NUM_CHANNELS  ; (y * WIDTH + x) * NUM_CHANNELS
 
                     movzx r14d, BYTE PTR [rsi + r10]      
                     pinsrb xmm0, r14d, 0                 
@@ -95,9 +72,8 @@ yLoopStart:
                     movzx r14d, BYTE PTR [rsi + r10 + 2] 
                     pinsrb xmm0, r14d, 8 
 
-                   vpaddd xmm1, xmm1, xmm0        ; Accumulate sum
+                    vpaddd xmm1, xmm1, xmm0        ; Accumulate sum
 
-                skipPixel:
                     inc r11
                     cmp r11, 1
                     jle dxLoopStart
@@ -116,20 +92,15 @@ yLoopStart:
             movd xmm4, r15d               ; Przenieœ r15d do xmm4 (skalar -> SIMD)
             vpbroadcastd xmm4, xmm4       ; Rozszerz r15d na wszystkie elementy ymm4
 
-           ; Dzielenie SIMD: sum / count
-            vcvtdq2ps xmm1, xmm1          ; Konwersja sum (INT -> FLOAT)
-            vcvtdq2ps xmm4, xmm4          ; Konwersja count (INT -> FLOAT)
+            ; Dzielenie SIMD: sum / count
             vdivps xmm1, xmm1, xmm4       ; Dzielenie SIMD
             vcvtps2dq xmm1, xmm1          ; Konwersja wyniku z FLOAT -> INT
-
 
             pextrb byte ptr [rdi + r10], xmm1, 0   
             pextrb byte ptr [rdi + r10 + 1], xmm1, 4   
             pextrb byte ptr [rdi + r10 + 2], xmm1, 8   
 
-
-            pop r10
-            cmp ecx, 0
+            cmp ecx, 1
             jne xLoopStart
 
         cmp ebx, 0
