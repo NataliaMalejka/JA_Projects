@@ -33,14 +33,14 @@ filterAsm PROC
     mov ebx, _STRIP_HEIGHT
     add ebx, r13d
 
-    mov r15, 9
+    mov r15d, _WIDTH
 
 yLoopStart:
     dec ebx
     cmp ebx, r13d
     jl endYLoop
 
-    mov ecx, _WIDTH
+    mov ecx, r15d
     dec ecx
 
         xLoopStart:
@@ -89,8 +89,11 @@ yLoopStart:
             imul r10d, NUM_CHANNELS
 
             ; Przygotowanie dzielnika do operacji SIMD
+            push r15
+            mov r15, 9
             movd xmm4, r15d               ; Przenieœ r15d do xmm4 (skalar -> SIMD)
             vpbroadcastd xmm4, xmm4       ; Rozszerz r15d na wszystkie elementy ymm4
+            pop r15
 
             ; Dzielenie SIMD: sum / count
             vdivps xmm1, xmm1, xmm4       ; Dzielenie SIMD

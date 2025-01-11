@@ -70,6 +70,18 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 	private: System::Windows::Forms::RadioButton^ radioButton2;
 
+	private: System::Windows::Forms::ProgressBar^ progressBar1;
+	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
+	private: System::Windows::Forms::RadioButton^ radioButton3;
+	private: System::Windows::Forms::RadioButton^ radioButton4;
+	private: System::Windows::Forms::RadioButton^ radioButton5;
+	private: System::Windows::Forms::RadioButton^ radioButton6;
+	private: System::Windows::Forms::RadioButton^ radioButton7;
+	private: System::Windows::Forms::RadioButton^ radioButton8;
+	private: System::Windows::Forms::RadioButton^ radioButton9;
+	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
+
+
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -89,7 +101,18 @@ namespace CppCLRWinFormsProject {
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
+			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
+			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton6 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton7 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton8 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton9 = (gcnew System::Windows::Forms::RadioButton());
+			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->flowLayoutPanel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -120,9 +143,9 @@ namespace CppCLRWinFormsProject {
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(214, 60);
+			this->textBox2->Location = System::Drawing::Point(223, 57);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(772, 20);
+			this->textBox2->Size = System::Drawing::Size(752, 20);
 			this->textBox2->TabIndex = 3;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
 			// 
@@ -148,11 +171,120 @@ namespace CppCLRWinFormsProject {
 			this->radioButton2->Text = L"Asm";
 			this->radioButton2->UseVisualStyleBackColor = true;
 			// 
+			// progressBar1
+			// 
+			this->progressBar1->Location = System::Drawing::Point(296, 93);
+			this->progressBar1->Name = L"progressBar1";
+			this->progressBar1->Size = System::Drawing::Size(235, 23);
+			this->progressBar1->TabIndex = 7;
+			this->progressBar1->Click += gcnew System::EventHandler(this, &Form1::progressBar1_Click);
+			// 
+			// radioButton3
+			// 
+			this->radioButton3->AutoSize = true;
+			this->radioButton3->Location = System::Drawing::Point(243, 3);
+			this->radioButton3->Name = L"radioButton3";
+			this->radioButton3->Size = System::Drawing::Size(31, 17);
+			this->radioButton3->TabIndex = 8;
+			this->radioButton3->TabStop = true;
+			this->radioButton3->Text = L"1\r\n";
+			this->radioButton3->UseVisualStyleBackColor = true;
+			this->radioButton3->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton3_CheckedChanged);
+			// 
+			// radioButton4
+			// 
+			this->radioButton4->AutoSize = true;
+			this->radioButton4->Location = System::Drawing::Point(206, 3);
+			this->radioButton4->Name = L"radioButton4";
+			this->radioButton4->Size = System::Drawing::Size(31, 17);
+			this->radioButton4->TabIndex = 9;
+			this->radioButton4->TabStop = true;
+			this->radioButton4->Text = L"2";
+			this->radioButton4->UseVisualStyleBackColor = true;
+			this->radioButton4->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton4_CheckedChanged);
+			// 
+			// radioButton5
+			// 
+			this->radioButton5->AutoSize = true;
+			this->radioButton5->Location = System::Drawing::Point(169, 3);
+			this->radioButton5->Name = L"radioButton5";
+			this->radioButton5->Size = System::Drawing::Size(31, 17);
+			this->radioButton5->TabIndex = 10;
+			this->radioButton5->TabStop = true;
+			this->radioButton5->Text = L"4";
+			this->radioButton5->UseVisualStyleBackColor = true;
+			this->radioButton5->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton5_CheckedChanged);
+			// 
+			// radioButton6
+			// 
+			this->radioButton6->AutoSize = true;
+			this->radioButton6->Location = System::Drawing::Point(132, 3);
+			this->radioButton6->Name = L"radioButton6";
+			this->radioButton6->Size = System::Drawing::Size(31, 17);
+			this->radioButton6->TabIndex = 11;
+			this->radioButton6->TabStop = true;
+			this->radioButton6->Text = L"8";
+			this->radioButton6->UseVisualStyleBackColor = true;
+			this->radioButton6->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton6_CheckedChanged);
+			// 
+			// radioButton7
+			// 
+			this->radioButton7->AutoSize = true;
+			this->radioButton7->Location = System::Drawing::Point(89, 3);
+			this->radioButton7->Name = L"radioButton7";
+			this->radioButton7->Size = System::Drawing::Size(37, 17);
+			this->radioButton7->TabIndex = 12;
+			this->radioButton7->TabStop = true;
+			this->radioButton7->Text = L"16";
+			this->radioButton7->UseVisualStyleBackColor = true;
+			this->radioButton7->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton7_CheckedChanged);
+			// 
+			// radioButton8
+			// 
+			this->radioButton8->AutoSize = true;
+			this->radioButton8->Location = System::Drawing::Point(46, 3);
+			this->radioButton8->Name = L"radioButton8";
+			this->radioButton8->Size = System::Drawing::Size(37, 17);
+			this->radioButton8->TabIndex = 13;
+			this->radioButton8->TabStop = true;
+			this->radioButton8->Text = L"32";
+			this->radioButton8->UseVisualStyleBackColor = true;
+			this->radioButton8->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton8_CheckedChanged);
+			// 
+			// radioButton9
+			// 
+			this->radioButton9->AutoSize = true;
+			this->radioButton9->Location = System::Drawing::Point(3, 3);
+			this->radioButton9->Name = L"radioButton9";
+			this->radioButton9->Size = System::Drawing::Size(37, 17);
+			this->radioButton9->TabIndex = 14;
+			this->radioButton9->TabStop = true;
+			this->radioButton9->Text = L"64";
+			this->radioButton9->UseVisualStyleBackColor = true;
+			this->radioButton9->CheckedChanged += gcnew System::EventHandler(this, &Form1::radioButton9_CheckedChanged);
+			// 
+			// flowLayoutPanel1
+			// 
+			this->flowLayoutPanel1->Controls->Add(this->radioButton9);
+			this->flowLayoutPanel1->Controls->Add(this->radioButton8);
+			this->flowLayoutPanel1->Controls->Add(this->radioButton7);
+			this->flowLayoutPanel1->Controls->Add(this->radioButton6);
+			this->flowLayoutPanel1->Controls->Add(this->radioButton5);
+			this->flowLayoutPanel1->Controls->Add(this->radioButton4);
+			this->flowLayoutPanel1->Controls->Add(this->radioButton3);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(552, 93);
+			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
+			this->flowLayoutPanel1->Size = System::Drawing::Size(381, 23);
+			this->flowLayoutPanel1->TabIndex = 15;
+			this->flowLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::flowLayoutPanel1_Paint);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1064, 618);
+			this->Controls->Add(this->flowLayoutPanel1);
+			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->radioButton2);
 			this->Controls->Add(this->radioButton1);
 			this->Controls->Add(this->textBox2);
@@ -162,6 +294,8 @@ namespace CppCLRWinFormsProject {
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->flowLayoutPanel1->ResumeLayout(false);
+			this->flowLayoutPanel1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -221,6 +355,7 @@ namespace CppCLRWinFormsProject {
 			for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
 				//int numThreads = 16;
+
 				double duration = filterC(width, height, image_data, new_image_data, numThreads);
 
 				duration = std::round(duration * 10.0) / 10.0;
@@ -235,7 +370,7 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				int numThreads = 16;
+				int numThreads = 8;
 
 				int STRIP_HEIGHT = (height -2) / numThreads;
 				int modulo = (height -2) % numThreads;
@@ -245,6 +380,8 @@ namespace CppCLRWinFormsProject {
 
 				int currentRow = 1;
 				
+				auto start = std::chrono::high_resolution_clock::now();
+
 				for (int i = 0; i < numThreads; i++)
 				{
 					int currentHeight = (height -2) / numThreads + (modulo > 0 ? 1 : 0);
@@ -254,9 +391,6 @@ namespace CppCLRWinFormsProject {
 					currentRow += currentHeight;
 				}
 				
-
-				auto start = std::chrono::high_resolution_clock::now();
-
 				for (std::thread& t : threads)
 				{
 					t.join();
@@ -291,5 +425,25 @@ namespace CppCLRWinFormsProject {
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton4_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton5_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton6_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton7_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton8_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void radioButton9_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
 };
 }
