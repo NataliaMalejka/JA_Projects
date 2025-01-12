@@ -1,0 +1,79 @@
+PUBLIC filterAsm
+
+
+.data
+NUM_CHANNELS DWORD 3
+_WIDTH  DWORD 0
+_HEIGHT DWORD 0
+_BUF_FROM QWORD 0
+_BUF_TO   QWORD 0
+_STRIP_HEIGHT DWORD 0
+_START_ROW    DWORD 0
+
+
+;RCX - OldPixels pointer
+;R8 - Starting index
+;R9 - End index
+;R10 - Stride
+;R11 - Negative width
+;R12 - NewPixels pointer
+
+.code
+
+filterAsm PROC
+mov r10, 9                             ; Move stride (width) to r10
+xor r11, r11                            ; Clear R11
+sub r11, r10                            ; Assign negative value of width to R11
+mov r12, rdx                            ; Move NewPixels pointer to r12
+mov rdi, r8                             ; Set starting index as counter to rdi
+add rcx, r8                             ; Adjust OldPixels pointer to starting index
+add r12, r8                             ; Adjust NewPixels pointer to starting index
+
+programLoop:
+    cmp rdi, r9                         ; Check if current index == end index
+    je endLoop                          ; If yes, exit loop
+
+    ; Load 3x3 neighborhood into xmm1
+    pinsrb xmm1, byte ptr[RCX + R11 - 3], 0  ; Top-left
+    pinsrb xmm1, byte ptr[RCX + R11]    , 1  ; Top-center
+    pinsrb xmm1, byte ptr[RCX + R11 + 3], 2  ; Top-right
+    pinsrb xmm1, byte ptr[RCX - 3]      , 3  ; Middle-left
+    pinsrb xmm1, byte ptr[RCX]          , 4  ; Middle-center
+    pinsrb xmm1, byte ptr[RCX + 3]      , 5  ; Middle-right
+    pinsrb xmm1, byte ptr[RCX + R10 - 3], 6  ; Bottom-left
+    pinsrb xmm1, byte ptr[RCX + R10]    , 7  ; Bottom-center
+    pinsrb xmm1, byte ptr[RCX + R10 + 3], 8  ; Bottom-right
+
+    ; Zero xmm2 register
+    pxor xmm2, xmm2                     ; Clear xmm2 (used for summing)
+    psadbw xmm1, xmm2                   ; Compute sum of all 9 pixels, result in xmm1
+
+    ; Move sum to eax
+    movd eax, xmm1      ; Move the sum of all pixels to EAX
+    xor rdx, rdx        ; Clear RDX to avoid overflow
+    mov ebx, 9          ; Set divisor (9 pixels in the mask)
+    div ebx             ; Divide EAX by EBX to compute average
+
+    ; Clamp result to range [0, 255]
+    mov ebx, 255                        ; Upper bound (255)
+    cmp eax, ebx                        ; Compare result with 255
+    cmovg eax, ebx                      ; If result > 255, set to 255
+    test eax, eax                       ; Check if result < 0
+    mov ebx, 0                          ; Lower bound (0)
+    cmovl eax, ebx                      ; If result < 0, set to 0
+
+    ; Store result in newPixels
+    mov byte ptr[R12], al               ; Store clamped result
+
+    ; Increment indices
+    inc rdi                             ; Increment counter
+    inc rcx                             ; Increment OldPixels pointer
+    inc r12                             ; Increment NewPixels pointer
+    jmp programLoop                     ; Repeat loop
+
+endLoop:
+    ret
+
+filterAsm ENDP
+
+END
