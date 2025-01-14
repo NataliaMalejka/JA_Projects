@@ -370,7 +370,7 @@ namespace CppCLRWinFormsProject {
 			String^ str;
 			//for (int numThreads = 1; numThreads <= 64; numThreads *= 2)
 			{
-				int numThreads = 8;
+				int numThreads = 1;
 
 				int STRIP_HEIGHT = (height -2) / numThreads;
 				int modulo = (height -2) % numThreads;
@@ -387,7 +387,7 @@ namespace CppCLRWinFormsProject {
 					int currentHeight = (height -2) / numThreads + (modulo > 0 ? 1 : 0);
 					if (modulo > 0) modulo--;
 
-					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, currentHeight, currentRow));
+					threads.push_back(std::thread(filterAsm, image_data, new_image_data, 12, 27, 9));
 					currentRow += currentHeight;
 				}
 				
@@ -425,25 +425,25 @@ namespace CppCLRWinFormsProject {
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton4_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton5_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton6_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton7_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton8_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void radioButton9_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
+	private: System::Void checkedListBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton4_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton5_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton6_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton7_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton8_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void radioButton9_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void flowLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
 };
 }

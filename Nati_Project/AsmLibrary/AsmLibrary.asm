@@ -10,109 +10,68 @@ _BUF_TO   QWORD 0
 _STRIP_HEIGHT DWORD 0
 _START_ROW    DWORD 0
 
+
+;RCX - OldPixels pointer
+;R8 - Starting index
+;R9 - End index
+;R10 - Stride
+;R11 - Negative width
+;R12 - NewPixels pointer
+
 .code
 
 filterAsm PROC
-    push rbp
-    mov rbp, rsp
+    mov ebx, dword ptr[rbp + 48]     ; Move width to EBX
+    mov r10, rbx                     ; Move stride to R10
+    xor r11, r11                     ; Clear R11 register
+    sub r11, r10                     ; Assign negative value of width to R11
+    mov r12, rdx                     ; Move NewPixelPointer to R12
+    mov rdi, r8                      ; Initialize counter from starting index to RDI
+    add rcx, r8                      ; Move OldPixels pointer to starting position
+    add R12, r8                      ; Move NewPixels pointer to starting position
 
-    ; Load parameters
-    mov _WIDTH, ecx
-    mov _HEIGHT, edx
-    mov _BUF_FROM, r8
-    mov _BUF_TO, r9
-    mov eax, dword ptr [rsp + 30h]
-    mov _STRIP_HEIGHT, eax
-    mov eax, dword ptr [rsp + 38h]
-    mov _START_ROW, eax
+programLoop:
+    cmp rdi, r9                      ; Compare current index with end index
+    je endLoop                       ; Exit loop if end is reached
 
-    mov rsi, _BUF_FROM
-    mov rdi, _BUF_TO
-    mov r13d, _START_ROW
+    ; Load 9 pixels (3 channels per pixel) into XMM registers
+    movdqu xmm0, [rcx + r11 - 3]     ; Load top-left, top-center, top-right
+    movdqu xmm1, [rcx - 3]           ; Load mid-left, mid-center, mid-right
+    movdqu xmm2, [rcx + r10 - 3]     ; Load bottom-left, bottom-center, bottom-right
 
-    mov ebx, _STRIP_HEIGHT
-    add ebx, r13d
+    ; Add RGB values for all 9 pixels
+    paddusb xmm0, xmm1               ; Add middle row to top row
+    paddusb xmm0, xmm2               ; Add bottom row to xmm0
 
-    mov r15d, _WIDTH
+    ; Horizontal sum of RGB channels
+    movdqa xmm1, xmm0                ; Copy xmm0 to xmm1
+    pshufd xmm1, xmm1, 245    ; Shuffle to align RGB values
+    paddusb xmm0, xmm1               ; Add shuffled values
+    pshufd xmm1, xmm1, 27    ; Further shuffle to complete sum
+    paddusb xmm0, xmm1               ; Final sum of RGB channels
 
-yLoopStart:
-    dec ebx
-    cmp ebx, r13d
-    jl endYLoop
+    ; Divide by 9 (equivalent to averaging)
+    movdqa xmm1, xmm0                ; Copy sum to xmm1
+    psrlw xmm1, 3                    ; Divide each value by 8 (right shift)
+    paddusb xmm1, xmm0               ; Add remainder for rounding
+    psrlw xmm1, 1                    ; Final division (divide by 9)
 
-    mov ecx, r15d
-    dec ecx
+    ; Clamp to range 0-255
+    pxor xmm2, xmm2                  ; Zero xmm2
+    packuswb xmm1, xmm2              ; Pack to unsigned bytes
 
-        xLoopStart:
-            dec ecx
+    ; Store the result
+    movdqu [R12], xmm1               ; Store averaged pixel in NewPixels
 
-            vpxor xmm1, xmm1, xmm1       ; sum = 0
+    ; Increment pointers
+    inc rdi                          ; Increment current index (loop)
+    add rcx, 3                       ; Move OldPixels pointer to the next pixel
+    add R12, 3                       ; Move NewPixels pointer to the next pixel
+    jmp programLoop
 
-            mov rax, -1                   ; dy = -1
-
-            dyLoopStart:
-                mov r11, -1                   ; dx = -1
-
-                dxLoopStart:
-
-                    mov r10d, ebx            ; y
-                    add r10, rax             ; y + dy
-                    imul r10d, _WIDTH        ; y * WIDTH
-                    mov r12d, ecx            ; x
-                    add r12d, r11d           ; x + dx
-                    add r10d, r12d           ; (y * WIDTH) + x
-                    imul r10d, NUM_CHANNELS  ; (y * WIDTH + x) * NUM_CHANNELS
-
-                    movzx r14d, BYTE PTR [rsi + r10]      
-                    pinsrb xmm0, r14d, 0                 
-
-                    movzx r14d, BYTE PTR [rsi + r10 + 1]
-                    pinsrb xmm0, r14d, 4         
-
-                    movzx r14d, BYTE PTR [rsi + r10 + 2] 
-                    pinsrb xmm0, r14d, 8 
-
-                    vpaddd xmm1, xmm1, xmm0        ; Accumulate sum
-
-                    inc r11
-                    cmp r11, 1
-                    jle dxLoopStart
-
-                inc rax
-                cmp rax, 1
-                jle dyLoopStart
-
-            ;to index
-            mov r10d, ebx
-            imul r10d, _WIDTH
-            add r10d, ecx
-            imul r10d, NUM_CHANNELS
-
-            ; Przygotowanie dzielnika do operacji SIMD
-            push r15
-            mov r15, 9
-            movd xmm4, r15d               ; Przenieœ r15d do xmm4 (skalar -> SIMD)
-            vpbroadcastd xmm4, xmm4       ; Rozszerz r15d na wszystkie elementy ymm4
-            pop r15
-
-            ; Dzielenie SIMD: sum / count
-            vdivps xmm1, xmm1, xmm4       ; Dzielenie SIMD
-            vcvtps2dq xmm1, xmm1          ; Konwersja wyniku z FLOAT -> INT
-
-            pextrb byte ptr [rdi + r10], xmm1, 0   
-            pextrb byte ptr [rdi + r10 + 1], xmm1, 4   
-            pextrb byte ptr [rdi + r10 + 2], xmm1, 8   
-
-            cmp ecx, 1
-            jne xLoopStart
-
-        cmp ebx, 0
-        jne yLoopStart
-
-endYLoop:
-    mov rsp, rbp
-    pop rbp
+endLoop:
     ret
+
 filterAsm ENDP
 
 END
