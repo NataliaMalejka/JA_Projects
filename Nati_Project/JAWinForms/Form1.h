@@ -387,7 +387,7 @@ namespace CppCLRWinFormsProject {
 					int currentHeight = (height -2) / numThreads + (modulo > 0 ? 1 : 0);
 					if (modulo > 0) modulo--;
 
-					threads.push_back(std::thread(filterAsm, image_data, new_image_data, 12, 27, 9));
+					threads.push_back(std::thread(filterAsm, width, height, image_data, new_image_data, currentHeight, currentRow));
 					currentRow += currentHeight;
 				}
 				
