@@ -1,2 +1,11 @@
 ﻿  Assembling AsmLibrary.asm...
-  AsmLibrary.vcxproj -> H:\Studia\JA_Projects\Nati_Project\x64\Debug\AsmLibrary.lib
+AsmLibrary.asm(89): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(90): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(91): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(92): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(93): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(94): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(95): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(96): error A2008: syntax error : PixelNeighbor
+AsmLibrary.asm(97): error A2008: syntax error : PixelNeighbor
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: Polecenie ml64.exe /c /nologo /Zi /Fo"x64\Debug\AsmLibrary.obj" /W3 /errorReport:prompt  /TaAsmLibrary.asm zostało zakończone; kod błędu: 1.

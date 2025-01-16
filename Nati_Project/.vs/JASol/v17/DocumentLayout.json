@@ -3,24 +3,27 @@
   "WorkspaceRootPath": "H:\\Studia\\JA_Projects\\Nati_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|solutionrelative:JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.asm||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|solutionrelative:CLibrary\\CLibrary.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\BuildCustomizations\\masm.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\ASMLIBRARY\\ASMLIBRARY.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:ASMLIBRARY\\ASMLIBRARY.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{869CABE9-B15A-4BB7-AA1D-E2D04B3EAE3C}|AsmLibrary\\AsmLibrary.vcxproj|solutionrelative:AsmLibrary\\AsmLibrary.def||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|solutionrelative:CLibrary\\CLibrary.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{1E7B955D-FBB6-4E79-BAF0-B634ADA83E30}|JAWinForms\\JAWinForms.vcxproj|solutionrelative:JAWinForms\\Form1.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A4B07115-071C-4F59-BBC4-713AD3AE4A5E}|CLibrary\\CLibrary.vcxproj|H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -34,50 +37,61 @@
       "DocumentGroups": [
         {
           "DockedWidth": 232,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "masm.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\BuildCustomizations\\masm.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\BuildCustomizations\\masm.targets",
+              "ViewState": "AgIAADEAAAAAAAAAAAASwEUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-01-16T21:29:46.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Form1.h",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h",
               "RelativeDocumentMoniker": "JAWinForms\\Form1.h",
               "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\JAWinForms\\Form1.h",
               "RelativeToolTip": "JAWinForms\\Form1.h",
-              "ViewState": "AgIAAFkBAAAAAAAAAAAhwIUBAAB1AAAAAAAAAA==",
+              "ViewState": "AgIAAHIBAAAAAAAAAAAqwIcBAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-10-27T16:15:09.203Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "CLibrary.c",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c",
               "RelativeDocumentMoniker": "CLibrary\\CLibrary.c",
               "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.c",
               "RelativeToolTip": "CLibrary\\CLibrary.c",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAADcAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAswDcAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-11-02T20:49:29.185Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AsmLibrary.asm",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm",
               "RelativeDocumentMoniker": "AsmLibrary\\AsmLibrary.asm",
               "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.asm",
               "RelativeToolTip": "AsmLibrary\\AsmLibrary.asm",
-              "ViewState": "AgIAAAIAAAAAAAAAAAASwDoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAiwGEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-10-27T14:53:59.93Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CLibrary.h",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\CLibrary\\CLibrary.h",
               "RelativeDocumentMoniker": "CLibrary\\CLibrary.h",
@@ -96,14 +110,14 @@
               "RelativeDocumentMoniker": "AsmLibrary\\AsmLibrary.h",
               "ToolTip": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.h",
               "RelativeToolTip": "AsmLibrary\\AsmLibrary.h",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAABMAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-02T21:38:51.903Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "AsmLibrary.def",
               "DocumentMoniker": "H:\\Studia\\JA_Projects\\Nati_Project\\AsmLibrary\\AsmLibrary.def",
               "RelativeDocumentMoniker": "AsmLibrary\\AsmLibrary.def",
