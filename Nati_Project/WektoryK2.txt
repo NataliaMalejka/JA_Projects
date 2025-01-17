@@ -1,0 +1,112 @@
+PUBLIC filterAsm
+
+
+.data
+
+    ; parameters
+	; rcx - width
+	; rdx - height
+	; r8 - input image
+	; r9 - output image
+	; [rsp + 48h] - strip height
+	; [rsp + 50h] - start row
+    ; [rsp + 58h] - start index
+
+    ;r11 - current row
+    ;r12 - start row
+    ;r10 - start index
+
+.code
+
+filterAsm PROC
+   
+   ProcessNeigbor macro vert, horiz
+
+    ; Oblicz współrzędne pikseli
+
+    push rdx
+    mov rdx, horiz
+    mov rax, vert
+    imul rax, rcx          ; rax = vert * width
+    add rax, rdx          ; rax = (vert * width) + horiz
+    imul rax, 3           ; R, G, B zajmują po 3 bajty
+    pop rdx
+
+    ; Oblicz adres pikseli
+    lea rdi, [r8 + rax]  ; r10 to baza obrazu (input image)
+
+    ; Załaduj piksel sąsiedni (3 bajty: R, G, B)
+    movzx eax, byte ptr [rdi]       ; R
+    add dword ptr [rsp + 60h], eax  ; Dodaj R do akumulatora
+
+    movzx eax, byte ptr [rdi + 1]   ; G
+    add dword ptr [rsp + 64h], eax  ; Dodaj G do akumulatora
+
+    movzx eax, byte ptr [rdi + 2]   ; B
+    add dword ptr [rsp + 68h], eax  ; Dodaj B do akumulatora
+
+endm
+
+setup:
+    push r12
+    push r13
+    push r14
+    push rbx
+
+    ; Parametry wejściowe
+    mov r12, rcx        ; szerokość
+    mov r13, rdx        ; wysokość
+    mov r14, [rsp + 50h]; start row
+    mov rbx, [rsp + 58h]; start index (w bajtach)
+
+loop_pixels:
+    cmp r13, 0
+    jle end_loop
+
+    ; Wyczyść akumulatory R, G, B
+    xor dword ptr [rsp + 60h], eax  ; R
+    xor dword ptr [rsp + 64h], eax  ; G
+    xor dword ptr [rsp + 68h], eax  ; B
+
+    ; Przetwarzanie sąsiadów (3x3 maska)
+    ProcessNeigbor -1, -1
+    ProcessNeigbor -1,  0
+    ProcessNeigbor -1,  1
+    ProcessNeigbor  0, -1
+    ProcessNeigbor  0,  0
+    ProcessNeigbor  0,  1
+    ProcessNeigbor  1, -1
+    ProcessNeigbor  1,  0
+    ProcessNeigbor  1,  1
+
+    ; Oblicz średnią
+    mov rax, 9            ; 9 pikseli w masce
+    mov ecx, dword ptr [rsp + 60h]
+    div rax
+    mov byte ptr [r9 + rbx], cl    ; Zapisz średnie R
+
+    mov ecx, dword ptr [rsp + 64h]
+    div rax
+    mov byte ptr [r9 + rbx + 1], cl; Zapisz średnie G
+
+    mov ecx, dword ptr [rsp + 68h]
+    div rax
+    mov byte ptr [r9 + rbx + 2], cl; Zapisz średnie B
+
+    ; Przesuń wskaźnik wyjścia
+    add rbx, 3
+    sub r13, 1
+    jmp loop_pixels
+
+end_loop:
+    ; Przywrócenie rejestrów
+    pop rbx
+    pop r14
+    pop r13
+    pop r12
+    ret
+
+
+filterAsm ENDP
+
+END
